@@ -1,5 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<section>some home</section>
+<section>
+  a {% if request.user.category == '1' %}
+  <div>{% include 'home/doctor.html' %}</div>
+  {% endif %} {% if request.user.category == '2' %}
+  <div>{% include 'home/lab.html' %}</div>
+  {% endif %} {% if request.user.category == '3' %}
+  <div>{% include 'home/bio.html' %}</div>
+  {% endif %}
+  <a href="{% url 'logout' %}">salir</a>
+</section>
 
 {% endblock content %}

@@ -13,4 +13,15 @@ urlpatterns = [
 
     # User management
     path('users-management/new/', views.createUser, name='createUser'),
+
+    # Clinical analysis
+    path('clinical-analysis/', views.clinicalAnalysis, name='clinicalAnalysis'),
+
+    # Pacients
+    path('pacients/', views.pacients, name='pacients'),
+    path('pacients/new/', views.newPacient, name='newPacient'),
+    path('pacients/delete/<int:pacientId>/',
+         views.deletePacient, name="deletePacient"),
+    path('pacients/edit/<int:pacientId>',
+         views.editPacient, name='editPacient'),
 ]

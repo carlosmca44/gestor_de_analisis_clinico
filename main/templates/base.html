@@ -8,9 +8,29 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'plugins/data_tables/datatables.min.css' %}"
+    />
+
     <title>Document</title>
   </head>
   <body>
     {% block content %}{% endblock content %}
+    <!-- jQuery -->
+    <script src="{% static 'plugins/data_tables/jquery/jquery.min.js'   %}"></script>
+
+    <!-- Datatable-->
+    <script
+      type="text/javascript"
+      src="{% static 'plugins/data_tables/datatables.min.js' %}"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $("#table_id").DataTable();
+      });
+    </script>
   </body>
 </html>

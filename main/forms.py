@@ -27,3 +27,12 @@ class userCreationForm(UserCreationForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'username': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
+class newPacientForm(forms.ModelForm):
+    class Meta:
+        model = Pacient
+        fields = ['name', 'last_name', 'ci',
+                  'age', 'sex', 'sicks', 'diagnosis']
+        # labels = {'name': 'Nombre', 'lastName': 'Apellidos', 'entry_date': 'Fecha de entrada',
+        #           'out_date': 'Fecha de salida', 'roomNumber': 'Numero de habitacion'}
