@@ -1,5 +1,40 @@
-lista de analisis clinicos
-<a href="">Nueva solicitud</a>
+<section>
+  lista de analisis clinicos
+  <a href="{% url 'newClinicalAnalysis' %}">Nueva solicitud</a>
 
-tabla -nombre y apellidos del paciente -tipo de analisis -denegado o
-no
+  <table id="table_id" class="display table table-striped">
+    <thead class="table-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Denegado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sAnalysis in analysis %}
+      <tr>
+        <td>{{sAnalysis.pacient}} {{sAnalysis.last_name}}</td>
+        <td>{{sAnalysis.kind}}</td>
+        <td>{{sAnalysis.denied}}</td>
+        <td>
+          <div class="d-flex gap-4">
+            <a
+              href="{% url 'deleteAnalysis' sAnalysis.id %}"
+              class="btn btn-primary w-50"
+              >Eliminar
+              <i class="fa-solid fa-trash"></i>
+            </a>
+            <a
+              href="{% url 'editAnalysis' sAnalysis.id  %}"
+              class="btn btn-danger w-50"
+              >Editar
+              <i class="fa-solid fa-pencil"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>

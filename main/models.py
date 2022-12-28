@@ -15,3 +15,12 @@ class Pacient(models.Model):
     sex = models.CharField(max_length=1, default='')
     sicks = models.CharField(max_length=500, default='')
     diagnosis = models.CharField(max_length=1000, default='')
+
+    def __str__(self):
+        return self.name + ' ' + self.last_name
+
+
+class AnalysisRequest(models.Model):
+    pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)
+    kind = models.CharField(max_length=50)
+    denied = models.BooleanField(default=False)

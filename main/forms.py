@@ -36,3 +36,10 @@ class newPacientForm(forms.ModelForm):
                   'age', 'sex', 'sicks', 'diagnosis']
         # labels = {'name': 'Nombre', 'lastName': 'Apellidos', 'entry_date': 'Fecha de entrada',
         #           'out_date': 'Fecha de salida', 'roomNumber': 'Numero de habitacion'}
+
+
+class newClinicalAnalysisForm(forms.ModelForm):
+
+    class Meta:
+        model = AnalysisRequest
+        fields = ['pacient', 'kind']

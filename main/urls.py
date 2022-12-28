@@ -16,6 +16,12 @@ urlpatterns = [
 
     # Clinical analysis
     path('clinical-analysis/', views.clinicalAnalysis, name='clinicalAnalysis'),
+    path('clinical-analysis/new/', views.newClinicalAnalysis,
+         name='newClinicalAnalysis'),
+    path('clinical-analysis/delete/<int:analysisId>/',
+         views.deleteClinicalAnalysis, name="deleteAnalysis"),
+    path('clinical-analysis/edit/<int:analysisId>',
+         views.editClinicalAnalysis, name='editAnalysis'),
 
     # Pacients
     path('pacients/', views.pacients, name='pacients'),
