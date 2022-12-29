@@ -31,8 +31,10 @@ urlpatterns = [
     path('pacients/edit/<int:pacientId>',
          views.editPacient, name='editPacient'),
 
-    # Results
+    # Analysis
     path('results/new/', views.newResult, name='newResult'),
+    path('analysis-denied/<int:analysisId>',
+         views.setAnalysisDenied, name='analysisDenied'),
 
     # Lab
     path('analysis-done/<int:analysisId>/',

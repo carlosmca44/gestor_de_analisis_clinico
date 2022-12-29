@@ -1,39 +1,52 @@
-<section>
-  lista de analisis clinicos
-  <a href="{% url 'newClinicalAnalysis' %}">Nueva solicitud</a>
-  <a href="{% url 'home' %}">atras</a>
+{% extends 'base.html' %} {% block content %}
+<section class="container">
+  <div class="d-flex">
+    <a href="{% url 'newClinicalAnalysis' %}">Nueva solicitud</a>
+    <a href="{% url 'home' %}">atras</a>
+  </div>
 
-  <table id="table_id" class="display table table-striped">
-    <thead class="table-light">
-      <tr>
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for sAnalysis in analysis %}
-      <tr>
-        <td>{{sAnalysis.pacient}} {{sAnalysis.last_name}}</td>
-        <td>{{sAnalysis.kind}}</td>
-        <td>
-          <div class="d-flex gap-4">
-            <a
-              href="{% url 'deleteAnalysis' sAnalysis.id %}"
-              class="btn btn-primary w-50"
-              >Eliminar
-              <i class="fa-solid fa-trash"></i>
-            </a>
-            <a
-              href="{% url 'editAnalysis' sAnalysis.id  %}"
-              class="btn btn-danger w-50"
-              >Editar
-              <i class="fa-solid fa-pencil"></i>
-            </a>
-          </div>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div>
+    <h2>Analisis Clinicos</h2>
+    <table
+      id="table_id"
+      class="display table table-striped"
+      aria-describedby=""
+    >
+      <thead class="table-light">
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Realizado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sAnalysis in analysis %}
+        <tr>
+          <td>{{sAnalysis.pacient}} {{sAnalysis.last_name}}</td>
+          <td>{{sAnalysis.kind}}</td>
+          <td>{{sAnalysis.done}}</td>
+          <td>
+            <div class="d-flex gap-4">
+              <a
+                href="{% url 'deleteAnalysis' sAnalysis.id %}"
+                class="btn btn-primary w-50 {% if sAnalysis.done == True %} disabled {% endif %}"
+                >Eliminar
+                <i class="fa-solid fa-trash"></i>
+              </a>
+              <a
+                href="{% url 'editAnalysis' sAnalysis.id  %}"
+                class="btn btn-danger w-50 {% if sAnalysis.done == True %} disabled {% endif %}"
+                >Editar
+                <i class="fa-solid fa-pencil"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </section>
+
+{% endblock content %}

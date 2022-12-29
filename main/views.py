@@ -16,7 +16,8 @@ def home(request):
     # Bio
     analysisBio = AnalysisRequest.objects.filter(denied=False, done=True)
 
-    context = {'analysis': analysisLab, 'pacients': pacients}
+    context = {'analysis': analysisLab,
+               'pacients': pacients, 'analysisBio': analysisBio}
     return render(request, 'home/home.html', context)
 
 

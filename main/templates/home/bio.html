@@ -1,5 +1,46 @@
 <a href="{% url 'newResult' %}">Insertar resultado</a>
 
+<table
+  id="table_id"
+  class="display table table-striped"
+  aria-describedby=""
+>
+  <thead class="table-light">
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Denegado</th>
+      <th>Realizado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sAnalysis in analysisBio %}
+    <tr>
+      <td>{{sAnalysis.pacient}} {{sAnalysis.last_name}}</td>
+      <td>{{sAnalysis.kind}}</td>
+      <td>{{sAnalysis.denied}}</td>
+      <td>{{sAnalysis.done}}</td>
+      <td>
+        <div class="d-flex gap-4">
+          <a
+            href="{% url 'analysisDenied' sAnalysis.id  %}"
+            class="btn btn-danger w-50"
+            >Denegar
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+          <a href="{% url 'newResult' %}" class="btn btn-success w-50"
+            >Dar resultado
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% comment %}
 <table id="table_id" class="display table table-striped">
   <thead class="table-light">
     <tr>
@@ -22,3 +63,4 @@
     {% endfor %}
   </tbody>
 </table>
+{% endcomment %}
