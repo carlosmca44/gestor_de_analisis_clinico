@@ -1,2 +1,57 @@
-<a href="{% url 'clinicalAnalysis' %}">analisis clinicos</a>
-<a href="{% url 'pacients' %}">Pacientes</a>
+<div style="display: flex">
+  <a href="{% url 'clinicalAnalysis' %}">analisis clinicos</a>
+  <a href="{% url 'createUser' %}">Nuevo usuario</a>
+</div>
+
+<div>
+  <div style="display: flex">
+    <a href="{% url 'newPacient' %}">Insertar paciente</a>
+    <a href="{% url 'home' %}">atras</a>
+  </div>
+  <div class="card p-3">
+    <h2>Pacientes</h2>
+    <div class="card-body border">
+      <table
+        id="table_id"
+        class="display table table-striped"
+        aria-describedby=""
+      >
+        <thead class="table-light">
+          <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Sexo</th>
+            <th>Diagnostico</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pacient in pacients %}
+          <tr>
+            <td>{{pacient.name}} {{pacient.last_name}}</td>
+            <td>{{pacient.age}}</td>
+            <td>{{pacient.sex}}</td>
+            <td>{{pacient.diagnosis}}</td>
+            <td>
+              <div class="d-flex gap-4">
+                <a
+                  href="{% url 'deletePacient' pacient.id %}"
+                  class="btn btn-primary w-50"
+                  >Eliminar
+                  <i class="fa-solid fa-trash"></i>
+                </a>
+                <a
+                  href="{% url 'editPacient' pacient.id  %}"
+                  class="btn btn-danger w-50"
+                  >Editar
+                  <i class="fa-solid fa-pencil"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

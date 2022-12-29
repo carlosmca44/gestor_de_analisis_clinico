@@ -1,13 +1,13 @@
 <section>
   lista de analisis clinicos
   <a href="{% url 'newClinicalAnalysis' %}">Nueva solicitud</a>
+  <a href="{% url 'home' %}">atras</a>
 
   <table id="table_id" class="display table table-striped">
     <thead class="table-light">
       <tr>
         <th>Nombre</th>
         <th>Tipo</th>
-        <th>Denegado</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -16,7 +16,6 @@
       <tr>
         <td>{{sAnalysis.pacient}} {{sAnalysis.last_name}}</td>
         <td>{{sAnalysis.kind}}</td>
-        <td>{{sAnalysis.denied}}</td>
         <td>
           <div class="d-flex gap-4">
             <a
