@@ -1,11 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import *
+from .forms import userCreationForm, newPacientForm, newClinicalAnalysisForm, ResultsForm
+from .models import User, Pacient, AnalysisRequest, Results
 
 
 @login_required
 def home(request):
-    context = {}
+
+    # Doctor
+    pacients = Pacient.objects.all()
+
+    # Lab
+    analysisLab = AnalysisRequest.objects.filter(done=False)
+
+    # Bio
+    analysisBio = AnalysisRequest.objects.filter(denied=False, done=True)
+
+    context = {'analysis': analysisLab, 'pacients': pacients}
     return render(request, 'home/home.html', context)
 
 
@@ -97,3 +108,29 @@ def editClinicalAnalysis(request, analysisId):
 def deleteClinicalAnalysis(_request, analysisId):
     AnalysisRequest.objects.get(id=analysisId).delete()
     return redirect('clinicalAnalysis')
+
+
+def newResult(request):
+    if request.method == 'POST':
+        form = ResultsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('clinicalAnalysis')
+    else:
+        form = ResultsForm()
+
+    context = {'form': form}
+    return render(request, 'results/newResult.html', context)
+
+
+def setAnalysisDone(_request, analysisId):
+    AnalysisRequest.objects.filter(id=analysisId).update(done=True)
+    if AnalysisRequest.objects.get(id=analysisId).denied == True:
+        AnalysisRequest.objects.filter(id=analysisId).update(denied=False)
+    return redirect('home')
+
+
+def setAnalysisDenied(_request, analysisId):
+    AnalysisRequest.objects.filter(
+        id=analysisId).update(done=False, denied=True)
+    return redirect('home')

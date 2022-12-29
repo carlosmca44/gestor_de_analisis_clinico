@@ -1,5 +1,5 @@
 from django import forms
-from .models import *
+from .models import User, Pacient, AnalysisRequest, Results
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -34,12 +34,23 @@ class newPacientForm(forms.ModelForm):
         model = Pacient
         fields = ['name', 'last_name', 'ci',
                   'age', 'sex', 'sicks', 'diagnosis']
-        # labels = {'name': 'Nombre', 'lastName': 'Apellidos', 'entry_date': 'Fecha de entrada',
-        #           'out_date': 'Fecha de salida', 'roomNumber': 'Numero de habitacion'}
 
 
 class newClinicalAnalysisForm(forms.ModelForm):
 
+    CATEGORIES = [('Sangre', 'Sangre'), ('Orina', 'Orina'),
+                  ('ADN', 'ADN')]
+
+    kind = forms.ChoiceField(
+        label='Tipo', widget=forms.Select(attrs={'class': 'form-select'}), choices=CATEGORIES)
+
     class Meta:
         model = AnalysisRequest
         fields = ['pacient', 'kind']
+
+
+class ResultsForm(forms.ModelForm):
+
+    class Meta:
+        model = Results
+        fields = ['idanalysis', 'info']

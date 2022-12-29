@@ -1,0 +1,35 @@
+<table id="table_id" class="display table table-striped">
+  <thead class="table-light">
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Informacion</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in results %}
+    <tr>
+      <td>{{result.pacient}} {{result.last_name}}</td>
+      <td>{{result.kind}}</td>
+      <td>{{result.denied}}</td>
+      <td>
+        <div class="d-flex gap-4">
+          <a
+            href="{% url 'deleteAnalysis' result.id %}"
+            class="btn btn-primary w-50"
+            >Eliminar
+            <i class="fa-solid fa-trash"></i>
+          </a>
+          <a
+            href="{% url 'editAnalysis' result.id  %}"
+            class="btn btn-danger w-50"
+            >Editar
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

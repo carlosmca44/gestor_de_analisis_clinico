@@ -1,1 +1,31 @@
-lab
+<table id="table_id" class="display table table-striped">
+  <thead class="table-light">
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Denegado</th>
+      <th>Realizado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sAnalysis in analysis %}
+    <tr>
+      <td>{{sAnalysis.pacient}} {{sAnalysis.last_name}}</td>
+      <td>{{sAnalysis.kind}}</td>
+      <td>{{sAnalysis.denied}}</td>
+      <td>{{sAnalysis.done}}</td>
+      <td>
+        <div class="d-flex gap-4">
+          <a
+            href="{% url 'analysisDone' sAnalysis.id  %}"
+            class="btn btn-danger w-50"
+            >Realizado
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

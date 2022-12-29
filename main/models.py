@@ -24,3 +24,13 @@ class AnalysisRequest(models.Model):
     pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)
     kind = models.CharField(max_length=50)
     denied = models.BooleanField(default=False)
+    done = models.BooleanField(default=False)
+
+    def __str__(self):
+        toReturn = self.id.__str__() + ' ' + self.pacient.name + ' - ' + self.kind
+        return toReturn
+
+
+class Results(models.Model):
+    idanalysis = models.ForeignKey(AnalysisRequest, on_delete=models.CASCADE)
+    info = models.CharField(max_length=500)
