@@ -1,12 +1,23 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<section>
-  a {% if request.user.category == '1' %}
-  <div>{% include 'home/doctor.html' %}</div>
+<section class="container">
+  {% if request.user.category == '1' %}
+  <div>
+    <h1>Doctor</h1>
+    {% include 'home/doctor.html' %}
+  </div>
   {% endif %} {% if request.user.category == '2' %}
-  <div>{% include 'home/lab.html' %}</div>
+
+  <div>
+    <h1>Laboratorista</h1>
+    {% include 'home/lab.html' %}
+  </div>
   {% endif %} {% if request.user.category == '3' %}
-  <div>{% include 'home/bio.html' %}</div>
+
+  <div>
+    <h1>Bioquimico</h1>
+    {% include 'home/bio.html' %}
+  </div>
   {% endif %}
   <a href="{% url 'logout' %}">salir</a>
 </section>
